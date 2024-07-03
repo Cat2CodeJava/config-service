@@ -4,7 +4,7 @@ on: push
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: polarbookshop/config-service
+  IMAGE_NAME: cat2codejava/config-service
   VERSION: latest
 
 jobs:
