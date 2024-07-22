@@ -22,6 +22,10 @@ ext {
     set('otelVersion', "1.33.3")
 }
 
+springBoot {
+    buildInfo()
+}
+
 bootBuildImage {
     builder = "docker.io/paketobuildpacks/builder-jammy-base"
     imageName = "${project.name}"
