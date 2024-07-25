@@ -1,16 +1,18 @@
 server:
   port: 8888
+  shutdown: graceful
   tomcat:
     connection-timeout: 2s
     keep-alive-timeout: 15s
     threads:
       max: 50
       min-spare: 5
-  shutdown: graceful
 
 spring:
   application:
     name: config-service
+  lifecycle:
+    timeout-per-shutdown-phase: 15s
   cloud:
     config:
       server:
@@ -20,8 +22,13 @@ spring:
           timeout: 5
           clone-on-start: true
           force-pull: true
-  lifecycle:
-    timeout-per-shutdown-phase: 15s
+
+logging:
+  pattern:
+    level: "%5p [${spring.application.name},%X{trace_id},%X{span_id}]"
+
+info:
+  system: Polar Bookshop
 
 management:
   endpoints:
@@ -44,11 +51,3 @@ management:
   metrics:
     tags:
       application: ${spring.application.name}
-
-info:
-  system: Polar Bookshop
-
-
-logging:
-  pattern:
-    level: "%5p [${spring.application.name},%X{trace_id},%X{span_id}]"
